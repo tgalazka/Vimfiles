@@ -45,6 +45,8 @@ Bundle 'pangloss/vim-javascript.git'
 Bundle 'cucumber.zip'
 " Clojure
 Bundle 'VimClojure'
+" Twig
+Bundle "lepture/vim-jinja"
 
 set ar
 set expandtab
@@ -137,6 +139,9 @@ au BufRead,BufNewFile *.clj set filetype=clojure
 
 " command-t
 let g:CommandTMaxFiles=10000
+
+" jinja
+au BufNewFile,BufRead *.twig set ft=jinja
 
 " NERDTree ********************************************************************
 
