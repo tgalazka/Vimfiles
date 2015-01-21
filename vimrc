@@ -2,51 +2,70 @@ set nocompatible
 filetype plugin indent on
 syntax on
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+" call vundle#begin()
+call vundle#begin('~/.vim/bundle')
+" alternatively, pass a path where Vundle should install plugins
+" call vundle#begin('~/some/path/here')
 
-Bundle 'gmarik/vundle'
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
 
-" After Command-T installs, make sure you run:
-"   cd ~/.vim/"Bundle/Command-T/ruby/command-t/
-"   ruby extconf.rb
-"   make
-Bundle 'Command-T'
-" EasyMotion
-Bundle 'EasyMotion'
-" Buffer explorer
-Bundle 'bufexplorer.zip'
-" Most recently used buffer
-Bundle 'bufmru.vim'
-" Change surrounding characters
-Bundle 'surround.vim'
-" Text alignment
-Bundle 'Tabular'
-" Code snipets
-Bundle 'snipMate'
-" Fast code commenting
-Bundle 'The-NERD-Commenter'
-" Project folder
-Bundle 'The-NERD-tree'
-" Stylus
-Bundle 'vim-stylus'
-" Autoclose parens etc.
-Bundle 'https://github.com/Townk/vim-autoclose.git'
-" Quoting and blocking 
-Bundle 'https://github.com/tpope/vim-surround.git'
-" Coffee Script
-Bundle 'https://github.com/vim-scripts/vim-coffee-script.git'
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+" Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" Git plugin not hosted on GitHub
+" Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+" Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Avoid a name conflict with L9
+" Plugin 'user/L9', {'name': 'newL9'}
 
-" -------- Syntax Coloring and indents -------
+Plugin 'wincent/command-t'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'vim-scripts/L9'
+Plugin 'godlygeek/tabular'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'guns/vim-clojure-static'
+Plugin 'bufexplorer.zip'
+Plugin 'bufmru.vim'
+Plugin 'tpope/vim-cucumber'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'rstacruz/sparkup'
+Plugin 'Townk/vim-autoclose'
+Plugin 'geekjuice/vim-mocha'
+Plugin 'tpope/vim-fugitive'
+Plugin 'moll/vim-node'
+Plugin 'pangloss/vim-javascript'
+Plugin 'lepture/vim-jinja'
+Plugin 'wavded/vim-stylus'
+Plugin 'tpope/vim-surround'
 
-" Javascript text hilighting
-Bundle 'pangloss/vim-javascript.git'
-" Cucumber
-Bundle 'cucumber.zip'
-" Clojure
-Bundle 'VimClojure'
-" Twig
-Bundle "lepture/vim-jinja"
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
 
 set ar
 set expandtab
@@ -97,13 +116,13 @@ function! s:RunTestFile()
 
   if g:CurrentTestExt == "js"
     execute "w\|!TEST=true NODE_PATH=test:lib expresso -I test -I lib -t 250
-      \ -s " . g:CurrentTestFile 
+    \ -s " . g:CurrentTestFile 
   elseif g:CurrentTestExt == "clj"
     execute "w\|!echo \"I can't do this yet\""
   endif
 endfunction
 command! -nargs=0 RunTestFile call s:RunTestFile()
-
+								       
 let mapleader = ","
 let maplocalleader = ","
 
@@ -143,7 +162,8 @@ let g:CommandTMaxFiles=10000
 " jinja
 au BufNewFile,BufRead *.twig set ft=jinja
 
-" NERDTree ********************************************************************
+" NERDTree
+" ********************************************************************
 
 " User instead of Netrw when doing an edit /foobar
 let NERDTreeHijackNetrw=1
@@ -156,4 +176,3 @@ let NERDTreeIgnore=['\.git','\.DS_Store','\.pdf','\.png','\.jpg','\.gif']
 
 " Quit on open
 let NERDTreeQuitOnOpen=1
-
